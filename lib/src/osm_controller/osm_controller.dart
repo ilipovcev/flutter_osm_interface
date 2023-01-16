@@ -79,7 +79,7 @@ abstract class IBaseOSMController {
   ///  [id] : String of that list of static geoPoint
   Future<void> setStaticPosition(List<GeoPoint> geoPoints, String id);
 
-add globalkey to method  Future<void> setClusterMarkers(
+  Future<void> setClusterMarkers(
     List<GeoPoint> geoPoints,
     GlobalKey key,
     String id,
