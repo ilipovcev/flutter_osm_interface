@@ -208,6 +208,13 @@ abstract class MobileOSMPlatform extends OSMPlatform {
     String id,
   );
 
+  Future<void> customClusterMarker(
+    int idOSM,
+    GlobalKey? globalKey,
+    String id, {
+    bool refresh = false,
+  });
+
   Future<void> clusterMarkers(
     int idOSM,
     List<GeoPoint> pList,

@@ -201,6 +201,29 @@ class MethodChannelOSM extends MobileOSMPlatform {
   }
 
   @override
+  Future<void> customClusterMarker(
+    int idOSM,
+    GlobalKey<State<StatefulWidget>>? globalKey,
+    String id, {
+    bool refresh = false,
+  }) async {
+    if (globalKey?.currentContext != null) {
+      final icon = await _capturePng(globalKey!);
+
+      var args = {
+        "id": id,
+        "bitmap": icon,
+        "refresh": refresh,
+      };
+
+      await _channels[idOSM]?.invokeMethod(
+        "cluster#IconMarker",
+        args,
+      );
+    }
+  }
+
+  @override
   Future<void> disableTracking(int idOSM) async {
     await _channels[idOSM]?.invokeMethod('deactivateTrackMe', null);
   }
