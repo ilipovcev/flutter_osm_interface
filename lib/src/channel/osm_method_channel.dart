@@ -375,19 +375,27 @@ class MethodChannelOSM extends MobileOSMPlatform {
   Future<void> clusterMarkers(
     int idOSM,
     List<GeoPoint> pList,
+    GlobalKey<State<StatefulWidget>>? globalKey,
     String id,
   ) async {
+    dynamic icon;
     try {
       List<Map<String, double>> listGeos = [];
       for (GeoPoint p in pList) {
         listGeos.add(p.toMap());
       }
+      if (globalKey?.currentContext != null) {
+        icon = await _capturePng(globalKey!);
+      }
       await _channels[idOSM]?.invokeMethod("clusterMarkers", {
         "id": id,
         "point": listGeos,
+        "icon": icon,
       });
     } on PlatformException catch (e) {
-      print(e.message);
+      if (kDebugMode) {
+        print(e.message);
+      }
     }
   }
 
