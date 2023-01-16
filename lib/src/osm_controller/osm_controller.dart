@@ -79,7 +79,11 @@ abstract class IBaseOSMController {
   ///  [id] : String of that list of static geoPoint
   Future<void> setStaticPosition(List<GeoPoint> geoPoints, String id);
 
-  Future<void> setClusterMarkers(List<GeoPoint> geoPoints, String id);
+add globalkey to method  Future<void> setClusterMarkers(
+    List<GeoPoint> geoPoints,
+    GlobalKey key,
+    String id,
+  );
 
   /// getZoom
   /// this method will return current zoom level of the map
