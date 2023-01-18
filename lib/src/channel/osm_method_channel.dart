@@ -48,6 +48,11 @@ class MethodChannelOSM extends MobileOSMPlatform {
   }
 
   @override
+  Stream<ClusterMarkerTapEvent> onClusterMarkerClickListener(int idMap) {
+    return _events(idMap).whereType<ClusterMarkerTapEvent>();
+  }
+
+  @override
   Stream<MapInitialization> onMapIsReady(int idMap) {
     return _events(idMap).whereType<MapInitialization>();
   }
@@ -104,6 +109,15 @@ class MethodChannelOSM extends MobileOSMPlatform {
         case "receiveGeoPoint":
           final result = call.arguments;
           _streamController.add(GeoPointEvent(idMap, GeoPoint.fromMap(result)));
+          break;
+        case "receiveClusterMarkerId":
+          final result = call.arguments;
+          _streamController.add(
+            ClusterMarkerTapEvent(
+              idMap,
+              ClusterGeoPoint.fromMap(result),
+            ),
+          );
           break;
         case "receiveUserLocation":
           final result = call.arguments;

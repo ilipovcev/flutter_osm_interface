@@ -16,4 +16,8 @@ class ClusterGeoPoint {
       "id": id,
     };
   }
+
+  ClusterGeoPoint.fromMap(Map<String, dynamic> m)
+      : this.geoPoint = GeoPoint(latitude: m['lat'], longitude: m['lon']),
+        this.id = m['id'];
 }

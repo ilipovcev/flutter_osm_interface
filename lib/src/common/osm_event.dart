@@ -1,3 +1,5 @@
+import 'package:flutter_osm_interface/flutter_osm_interface.dart';
+
 import '../types/types.dart';
 
 abstract class EventOSM<T> {
@@ -33,6 +35,11 @@ class TapEvent extends EventOSM<GeoPoint> {
 
 class SingleTapEvent extends TapEvent {
   SingleTapEvent(int mapId, GeoPoint position) : super(mapId, position);
+}
+
+class ClusterMarkerTapEvent extends TapEvent {
+  ClusterMarkerTapEvent(int mapId, ClusterGeoPoint clusterGeoPoint)
+      : super(mapId, clusterGeoPoint.geoPoint);
 }
 
 class LongTapEvent extends TapEvent {
