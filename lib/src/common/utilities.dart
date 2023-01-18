@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -12,6 +11,7 @@ import '../types/types.dart';
 
 typedef OnGeoPointClicked = void Function(GeoPoint);
 typedef OnLocationChanged = void Function(GeoPoint);
+typedef OnMarkerInClusterClicked = void Function(ClusterGeoPoint);
 
 const iosSizeIcon = [48.0, 48.0];
 

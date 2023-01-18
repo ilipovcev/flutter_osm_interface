@@ -33,13 +33,18 @@ class TapEvent extends EventOSM<GeoPoint> {
   TapEvent(int mapId, GeoPoint position) : super(mapId, position);
 }
 
+class MarkerTapEvent extends EventOSM<ClusterGeoPoint> {
+  MarkerTapEvent(int mapId, ClusterGeoPoint clusterGeoPoint)
+      : super(mapId, clusterGeoPoint);
+}
+
 class SingleTapEvent extends TapEvent {
   SingleTapEvent(int mapId, GeoPoint position) : super(mapId, position);
 }
 
-class ClusterMarkerTapEvent extends TapEvent {
+class ClusterMarkerTapEvent extends MarkerTapEvent {
   ClusterMarkerTapEvent(int mapId, ClusterGeoPoint clusterGeoPoint)
-      : super(mapId, clusterGeoPoint.geoPoint);
+      : super(mapId, clusterGeoPoint);
 }
 
 class LongTapEvent extends TapEvent {
