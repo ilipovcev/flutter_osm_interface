@@ -135,13 +135,27 @@ extension ListMultiRoadConf on List<MultiRoadConfiguration> {
   }
 }
 
-Future<Uint8List> capturePng(GlobalKey globalKey) async {
+Future<Object> capturePng(GlobalKey globalKey) async {
+  if (globalKey.currentContext == null) {
+    throw Exception("Error to draw you custom icon");
+  }
   RenderRepaintBoundary boundary =
       globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
   ui.Image image = await boundary.toImage();
   ByteData byteData =
       (await (image.toByteData(format: ui.ImageByteFormat.png)))!;
   Uint8List pngBytes = byteData.buffer.asUint8List();
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    return {
+      "icon": pngBytes.convertToString(),
+      "size": globalKey.currentContext != null
+          ? [
+              globalKey.currentContext!.size!.width.toInt(),
+              globalKey.currentContext!.size!.height.toInt()
+            ]
+          : iosSizeIcon
+    };
+  }
   return pngBytes;
 }
 

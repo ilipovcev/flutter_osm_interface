@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_osm_interface/src/types/cluster_geo_point.dart';
 import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -374,22 +375,23 @@ class MethodChannelOSM extends MobileOSMPlatform {
   @override
   Future<void> clusterMarkers(
     int idOSM,
-    List<GeoPoint> pList,
-    GlobalKey<State<StatefulWidget>>? globalKey,
+    List<ClusterGeoPoint> pList,
+    GlobalKey<State<StatefulWidget>>? clusterIconKey,
     String id,
   ) async {
     dynamic icon;
     try {
-      List<Map<String, double>> listGeos = [];
-      for (GeoPoint p in pList) {
-        listGeos.add(p.toMap());
+      List<Map<String, Object>> listGeos = [];
+      for (ClusterGeoPoint p in pList) {
+        listGeos.add(await p.toMap());
       }
-      if (globalKey?.currentContext != null) {
-        icon = await _capturePng(globalKey!);
+      if (clusterIconKey?.currentContext != null) {
+        icon = await _capturePng(clusterIconKey!);
       }
+      print(icon);
       await _channels[idOSM]?.invokeMethod("clusterMarkers", {
         "id": id,
-        "point": listGeos,
+        "points": listGeos,
         "icon": icon,
       });
     } on PlatformException catch (e) {

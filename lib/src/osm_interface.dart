@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_osm_interface/src/types/cluster_geo_point.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'channel/osm_method_channel.dart';
@@ -216,7 +217,7 @@ abstract class MobileOSMPlatform extends OSMPlatform {
 
   Future<void> clusterMarkers(
     int idOSM,
-    List<GeoPoint> pList,
+    List<ClusterGeoPoint> pList,
     GlobalKey? globalKey,
     String id,
   );
