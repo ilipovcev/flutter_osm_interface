@@ -80,7 +80,7 @@ abstract class IBaseOSMController {
   Future<void> setStaticPosition(List<GeoPoint> geoPoints, String id);
 
   Future<void> setClusterMarkers(
-    List<GeoPoint> geoPoints,
+    List<ClusterGeoPoint> geoPoints,
     MarkerIcon markerIcon,
     String id,
   );

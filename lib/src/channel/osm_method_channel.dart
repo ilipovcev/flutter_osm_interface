@@ -383,7 +383,7 @@ class MethodChannelOSM extends MobileOSMPlatform {
     try {
       List<Map<String, Object>> listGeos = [];
       for (ClusterGeoPoint p in pList) {
-        listGeos.add(await p.toMap());
+        listGeos.add(p.toMap());
       }
       if (clusterIconKey?.currentContext != null) {
         icon = await _capturePng(clusterIconKey!);
