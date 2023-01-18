@@ -203,7 +203,7 @@ class MethodChannelOSM extends MobileOSMPlatform {
   @override
   Future<void> customClusterMarker(
     int idOSM,
-    GlobalKey<State<StatefulWidget>>? globalKey,
+    GlobalKey? globalKey,
     String id, {
     bool refresh = false,
   }) async {

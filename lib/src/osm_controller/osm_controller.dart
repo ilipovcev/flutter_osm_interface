@@ -81,7 +81,7 @@ abstract class IBaseOSMController {
 
   Future<void> setClusterMarkers(
     List<GeoPoint> geoPoints,
-    GlobalKey key,
+    MarkerIcon markerIcon,
     String id,
   );
 
