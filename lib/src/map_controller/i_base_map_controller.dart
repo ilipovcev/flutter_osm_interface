@@ -18,12 +18,17 @@ abstract class IBaseMapController {
   late ValueNotifier<GeoPoint?> _listenerMapSingleTapping = ValueNotifier(null);
   late ValueNotifier<bool> _listenerMapIsReady = ValueNotifier(false);
   late ValueNotifier<Region?> _listenerRegionIsChanging = ValueNotifier(null);
+  late ValueNotifier<ClusterGeoPoint?> _listenerClusterMarkerTapping =
+      ValueNotifier(null);
 
   ValueListenable<GeoPoint?> get listenerMapLongTapping =>
       _listenerMapLongTapping;
 
   ValueListenable<GeoPoint?> get listenerMapSingleTapping =>
       _listenerMapSingleTapping;
+
+  ValueListenable<ClusterGeoPoint?> get listenerClusterMarkerTapping =>
+      _listenerClusterMarkerTapping;
 
   @Deprecated("this callback is deprecated,will be removed in the future,"
       "use OSMMixinObserver instead,see readme for more details")
@@ -62,5 +67,9 @@ extension setLiteners on BaseMapController {
 
   void setValueListenerRegionIsChanging(Region region) {
     _listenerRegionIsChanging.value = region;
+  }
+
+  void setValueListenerMarkerTapping(ClusterGeoPoint clusterGeoPoint) {
+    _listenerClusterMarkerTapping.value = clusterGeoPoint;
   }
 }
