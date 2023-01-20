@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_osm_interface/src/types/cluster_geo_point.dart';
 import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -112,12 +111,15 @@ class MethodChannelOSM extends MobileOSMPlatform {
           break;
         case "receiveClusterMarkerId":
           final result = call.arguments;
-          _streamController.add(
-            ClusterMarkerTapEvent(
-              idMap,
-              ClusterGeoPoint.fromMap(result),
+          final objRes = ClusterGeoPoint(
+            id: result['id'],
+            geoPoint: GeoPoint(
+              latitude: result['lat'],
+              longitude: result['lon'],
             ),
           );
+          _streamController.add(ClusterMarkerTapEvent(idMap, objRes));
+          print('add event cluster marker tap');
           break;
         case "receiveUserLocation":
           final result = call.arguments;

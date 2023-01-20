@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_interface/src/types/cluster_geo_point.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'channel/osm_method_channel.dart';
@@ -38,9 +37,7 @@ abstract class OSMPlatform extends PlatformInterface {
 
   Stream<RegionIsChangingEvent> onRegionIsChangingListener(int idMap);
 
-  Future<void> init(
-    int idOSM,
-  );
+  Future<void> init(int idOSM);
 
   void close(int idOSM);
 
@@ -54,7 +51,6 @@ abstract class OSMPlatform extends PlatformInterface {
 }
 
 abstract class MobileOSMPlatform extends OSMPlatform {
-
   Future<void> initMap(
     int idOSM,
     GeoPoint point,

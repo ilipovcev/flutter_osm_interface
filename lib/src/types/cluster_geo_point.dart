@@ -20,4 +20,9 @@ class ClusterGeoPoint {
   ClusterGeoPoint.fromMap(Map<String, dynamic> m)
       : this.geoPoint = GeoPoint(latitude: m['lat'], longitude: m['lon']),
         this.id = m['id'];
+
+  @override
+  String toString() {
+    return 'id: $id; lat: ${geoPoint.latitude}; lng: ${geoPoint.longitude}';
+  }
 }

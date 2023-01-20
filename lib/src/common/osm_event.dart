@@ -42,7 +42,7 @@ class SingleTapEvent extends TapEvent {
   SingleTapEvent(int mapId, GeoPoint position) : super(mapId, position);
 }
 
-class ClusterMarkerTapEvent extends MarkerTapEvent {
+class ClusterMarkerTapEvent extends EventOSM<ClusterGeoPoint> {
   ClusterMarkerTapEvent(int mapId, ClusterGeoPoint clusterGeoPoint)
       : super(mapId, clusterGeoPoint);
 }
