@@ -220,6 +220,12 @@ abstract class MobileOSMPlatform extends OSMPlatform {
     String id,
   );
 
+  Future<void> setMarkersInClusterIcon(
+    int idOSM,
+    String clusterId,
+    GlobalKey markersIconKey,
+  );
+
   Future<double> getZoom(
     int idOSM,
   );

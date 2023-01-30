@@ -417,6 +417,28 @@ class MethodChannelOSM extends MobileOSMPlatform {
     }
   }
 
+  @override
+  Future<void> setMarkersInClusterIcon(
+      int idOSM,
+    String clusterId,
+    GlobalKey<State<StatefulWidget>> markersIcon,
+  ) async {
+    try {
+      if (markersIcon.currentContext == null) {
+        return;
+      }
+      final icon = await _capturePng(markersIcon);
+      await _channels[idOSM]?.invokeMethod("setMarkersInClusterIcon", {
+        "cluster_id": clusterId,
+        "icon": icon,
+      });
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+    }
+  }
+
   Future<dynamic> _capturePng(GlobalKey globalKey) async {
     if (globalKey.currentContext == null) {
       throw Exception("Error to draw you custom icon");
