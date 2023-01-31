@@ -419,7 +419,7 @@ class MethodChannelOSM extends MobileOSMPlatform {
 
   @override
   Future<void> setMarkersInClusterIcon(
-      int idOSM,
+    int idOSM,
     String clusterId,
     GlobalKey<State<StatefulWidget>> markersIcon,
   ) async {
@@ -430,6 +430,30 @@ class MethodChannelOSM extends MobileOSMPlatform {
       final icon = await _capturePng(markersIcon);
       await _channels[idOSM]?.invokeMethod("setMarkersInClusterIcon", {
         "cluster_id": clusterId,
+        "icon": icon,
+      });
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+    }
+  }
+
+  @override
+  Future<void> setSpecificMarkerInClusterIcon(
+    int idOSM,
+    String clusterId,
+    String markerId,
+    GlobalKey<State<StatefulWidget>> markerIcon,
+  ) async {
+    try {
+      if (markerIcon.currentContext == null) {
+        return;
+      }
+      final icon = await _capturePng(markerIcon);
+      await _channels[idOSM]?.invokeMethod("setSpecificMarkerInClusterIcon", {
+        "cluster_id": clusterId,
+        "marker_id": markerId,
         "icon": icon,
       });
     } on PlatformException catch (e) {

@@ -90,6 +90,12 @@ abstract class IBaseOSMController {
     MarkerIcon markersIcon,
   );
 
+  Future<void> setSpecificMarkerInClusterIcon(
+    String clusterId,
+    String markerId,
+    MarkerIcon markerIcon,
+  );
+
   /// getZoom
   /// this method will return current zoom level of the map
   /// the type of the value returned is double,this value should be between minZoomLevel and maxZoomLevel
