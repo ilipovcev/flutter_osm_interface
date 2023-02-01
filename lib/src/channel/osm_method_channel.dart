@@ -426,7 +426,23 @@ class MethodChannelOSM extends MobileOSMPlatform {
       await _channels[idOSM]?.invokeMethod("setListLocations", {
         "locations": locations,
       });
-    } on PlatformException catch(e) {
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+    }
+  }
+
+  @override
+  Future<void> setStopMarkers(
+    int idOSM,
+    List<Map<String, dynamic>> stops,
+  ) async {
+    try {
+      await _channels[idOSM]?.invokeMethod("setStopMarkers", {
+        "stops": stops,
+      });
+    } on PlatformException catch (e) {
       if (kDebugMode) {
         print(e.message);
       }
