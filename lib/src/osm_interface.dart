@@ -220,6 +220,11 @@ abstract class MobileOSMPlatform extends OSMPlatform {
     String id,
   );
 
+  Future<void> setListLocations(
+    int idOSM,
+    List<Map<String, dynamic>> locations,
+  );
+
   Future<void> setMarkersInClusterIcon(
     int idOSM,
     String clusterId,

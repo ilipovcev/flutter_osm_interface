@@ -418,6 +418,22 @@ class MethodChannelOSM extends MobileOSMPlatform {
   }
 
   @override
+  Future<void> setListLocations(
+    int idOSM,
+    List<Map<String, dynamic>> locations,
+  ) async {
+    try {
+      await _channels[idOSM]?.invokeMethod("setListLocations", {
+        "locations": locations,
+      });
+    } on PlatformException catch(e) {
+      if (kDebugMode) {
+        print(e.message);
+      }
+    }
+  }
+
+  @override
   Future<void> setMarkersInClusterIcon(
     int idOSM,
     String clusterId,
