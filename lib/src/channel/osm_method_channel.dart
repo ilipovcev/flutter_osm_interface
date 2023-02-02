@@ -121,7 +121,7 @@ class MethodChannelOSM extends MobileOSMPlatform {
           _streamController.add(GeoPointEvent(idMap, GeoPoint.fromMap(result)));
           break;
         case "onStopMarkerTap":
-          final result = call.arguments as Map<String, dynamic>;
+          final result = call.arguments;
           final objRes = ClusterGeoPoint(
             id: result['id']!.toString(),
             geoPoint: GeoPoint(
@@ -132,7 +132,7 @@ class MethodChannelOSM extends MobileOSMPlatform {
           _streamController.add(StopMarkerTapEvent(idMap, objRes));
           break;
         case "onLocationMarkerTap":
-          final result = call.arguments as Map<String, dynamic>;
+          final result = call.arguments;
           final objRes = ClusterGeoPoint(
             id: result['id']!.toString(),
             geoPoint: GeoPoint(
@@ -140,6 +140,9 @@ class MethodChannelOSM extends MobileOSMPlatform {
               longitude: result['lon'],
             ),
           );
+          if (kDebugMode) {
+            print('obj event $objRes');
+          }
           _streamController.add(LocationMarkerTapEvent(idMap, objRes));
           break;
         case "receiveClusterMarkerId":
