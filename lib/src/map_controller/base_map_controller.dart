@@ -47,7 +47,7 @@ abstract class BaseMapController extends IBaseMapController {
   @mustCallSuper
   @override
   void init() {
-    _timer = Timer(Duration(milliseconds: 1250), () async {
+    _timer = Timer(const Duration(milliseconds: 1250), () async {
       await osmBaseController.initMap(
         initPosition: initPosition,
         initWithUserPosition: initMapWithUserPosition,

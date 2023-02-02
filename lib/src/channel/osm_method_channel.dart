@@ -86,6 +86,17 @@ class MethodChannelOSM extends MobileOSMPlatform {
     return _events(idMap).whereType<RegionIsChangingEvent>();
   }
 
+
+  @override
+  Stream<LocationMarkerTapEvent> onLocationPointClickListener(int idMap) {
+    return _events(idMap).whereType<LocationMarkerTapEvent>();
+  }
+
+  @override
+  Stream<StopMarkerTapEvent> onStopPointClickListener(int idMap) {
+    return _events(idMap).whereType<StopMarkerTapEvent>();
+  }
+
   void setGeoPointHandler(int idMap) async {
     _channels[idMap]!.setMethodCallHandler((call) async {
       switch (call.method) {
@@ -108,6 +119,28 @@ class MethodChannelOSM extends MobileOSMPlatform {
         case "receiveGeoPoint":
           final result = call.arguments;
           _streamController.add(GeoPointEvent(idMap, GeoPoint.fromMap(result)));
+          break;
+        case "onStopMarkerTap":
+          final result = call.arguments as Map<String, dynamic>;
+          final objRes = ClusterGeoPoint(
+            id: result['id']!.toString(),
+            geoPoint: GeoPoint(
+              latitude: result['lat'],
+              longitude: result['lon'],
+            ),
+          );
+          _streamController.add(StopMarkerTapEvent(idMap, objRes));
+          break;
+        case "onLocationMarkerTap":
+          final result = call.arguments as Map<String, dynamic>;
+          final objRes = ClusterGeoPoint(
+            id: result['id']!.toString(),
+            geoPoint: GeoPoint(
+              latitude: result['lat'],
+              longitude: result['lon'],
+            ),
+          );
+          _streamController.add(LocationMarkerTapEvent(idMap, objRes));
           break;
         case "receiveClusterMarkerId":
           final result = call.arguments;

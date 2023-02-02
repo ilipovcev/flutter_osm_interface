@@ -12,6 +12,8 @@ import '../types/types.dart';
 typedef OnGeoPointClicked = void Function(GeoPoint);
 typedef OnLocationChanged = void Function(GeoPoint);
 typedef OnMarkerInClusterClicked = void Function(ClusterGeoPoint);
+typedef OnStopPointClicked = void Function(ClusterGeoPoint);
+typedef OnLocationPointClicked = void Function(ClusterGeoPoint);
 
 const iosSizeIcon = [48.0, 48.0];
 

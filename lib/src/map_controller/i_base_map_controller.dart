@@ -14,11 +14,18 @@ abstract class IBaseMapController {
   final GeoPoint? initPosition;
   final BoundingBox? areaLimit;
 
-  late ValueNotifier<GeoPoint?> _listenerMapLongTapping = ValueNotifier(null);
-  late ValueNotifier<GeoPoint?> _listenerMapSingleTapping = ValueNotifier(null);
-  late ValueNotifier<bool> _listenerMapIsReady = ValueNotifier(false);
-  late ValueNotifier<Region?> _listenerRegionIsChanging = ValueNotifier(null);
-  late ValueNotifier<ClusterGeoPoint?> _listenerClusterMarkerTapping =
+  late final ValueNotifier<GeoPoint?> _listenerMapLongTapping =
+      ValueNotifier(null);
+  late final ValueNotifier<GeoPoint?> _listenerMapSingleTapping =
+      ValueNotifier(null);
+  late final ValueNotifier<bool> _listenerMapIsReady = ValueNotifier(false);
+  late final ValueNotifier<Region?> _listenerRegionIsChanging =
+      ValueNotifier(null);
+  late final ValueNotifier<ClusterGeoPoint?> _listenerClusterMarkerTapping =
+      ValueNotifier(null);
+  late final ValueNotifier<ClusterGeoPoint?> _listenerStopMarkerTapping =
+      ValueNotifier(null);
+  late final ValueNotifier<ClusterGeoPoint?> _listenerLocationMarkerTapping =
       ValueNotifier(null);
 
   ValueListenable<GeoPoint?> get listenerMapLongTapping =>
@@ -29,6 +36,12 @@ abstract class IBaseMapController {
 
   ValueListenable<ClusterGeoPoint?> get listenerClusterMarkerTapping =>
       _listenerClusterMarkerTapping;
+
+  ValueListenable<ClusterGeoPoint?> get listenerStopMarkerTapping =>
+      _listenerStopMarkerTapping;
+
+  ValueListenable<ClusterGeoPoint?> get listenerLocationMarkerTapping =>
+      _listenerLocationMarkerTapping;
 
   @Deprecated("this callback is deprecated,will be removed in the future,"
       "use OSMMixinObserver instead,see readme for more details")
@@ -71,5 +84,13 @@ extension setLiteners on BaseMapController {
 
   void setValueListenerMarkerTapping(ClusterGeoPoint clusterGeoPoint) {
     _listenerClusterMarkerTapping.value = clusterGeoPoint;
+  }
+
+  void setValueListenerStopMarkerTapping(ClusterGeoPoint clusterGeoPoint) {
+    _listenerStopMarkerTapping.value = clusterGeoPoint;
+  }
+
+  void setValueListenerLocationMarkerTapping(ClusterGeoPoint clusterGeoPoint) {
+    _listenerLocationMarkerTapping.value = clusterGeoPoint;
   }
 }
